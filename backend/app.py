@@ -221,8 +221,13 @@ def root():
             "ws://host/socket.io - WebSocket connection"
         ]
     }), 200
-
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 5000))
     logger.info(f"Starting DevOps Test Application on port {port}")
-    socketio.run(app, host='0.0.0.0', port=port, debug=os.environ.get('DEBUG', 'False') == 'True')
+    socketio.run(
+        app,
+        host='0.0.0.0',
+        port=port,
+        debug=os.environ.get('DEBUG', 'False') == 'True',
+        allow_unsafe_werkzeug=True
+    )
